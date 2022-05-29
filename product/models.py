@@ -77,8 +77,8 @@ class Product(models.Model):
         return 0
 
     def get_name(self):
-        if len(self.name) > 50:
-            return f'{self.name[:50]}...'
+        if len(self.name) > 40:
+            return f'{self.name[:40]}...'
         else:
             return self.name
 

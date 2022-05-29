@@ -55,7 +55,7 @@ class Post(models.Model):
             return self.description
 
     def get_title(self):
-        if len(self.title) > 50:
-            return f'{self.title[:50]}...'
+        if len(self.title) > 40:
+            return f'{self.title[:40]}...'
         else:
             return self.title
