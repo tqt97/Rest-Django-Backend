@@ -51,7 +51,7 @@ class Product(models.Model):
         if self.image:
             return f'https://tqt-rest-djshop.herokuapp.com{self.image.url}'
         else:
-            return 'https://tqt-rest-djshop.herokuapp.com/media/no-image.jpg'
+            return ''
 
     def get_thumbnail(self):
         if self.thumbnail:
@@ -62,7 +62,7 @@ class Product(models.Model):
             self.save()
             return f'https://tqt-rest-djshop.herokuapp.com{self.thumbnail.url}'
         else:
-            return 'https://tqt-rest-djshop.herokuapp.com/media/no-image-thumb.jpg'
+            return ''
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
