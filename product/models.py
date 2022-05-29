@@ -8,7 +8,7 @@ from .utils import make_thumbnail
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
-    slug = AutoSlugField(populate_from='name', unique_with='created_at')
+    slug = AutoSlugField(populate_from='name', unique_with='name')
 
     class Meta:
         verbose_name = 'Categories'
@@ -29,7 +29,7 @@ class Product(models.Model):
     category = models.ForeignKey(
         Category, related_name='products', on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
-    slug = AutoSlugField(populate_from='name', unique_with='created_at')
+    slug = AutoSlugField(populate_from='name', unique_with='name')
     description = models.TextField(blank=True, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(

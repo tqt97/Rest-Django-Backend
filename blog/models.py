@@ -11,7 +11,7 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     body = models.TextField()
-    slug = AutoSlugField(populate_from='title', unique_with='created_at')
+    slug = AutoSlugField(populate_from='title', unique_with='title')
 
     image = models.ImageField(upload_to='uploads/blogs/', blank=True)
     thumbnail = models.ImageField(upload_to='', blank=True)
