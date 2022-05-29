@@ -49,9 +49,13 @@ class Post(models.Model):
         super().save(*args, **kwargs)
 
     def get_description(self):
-        # return f'{self.description[:20]}...'
         if len(self.description) > 20:
             return f'{self.description[:20]}...'
         else:
             return self.description
-        
+
+    def get_title(self):
+        if len(self.title) > 50:
+            return f'{self.title[:50]}...'
+        else:
+            return self.title

@@ -76,6 +76,11 @@ class Product(models.Model):
 
         return 0
 
+    def get_name(self):
+        if len(self.name) > 50:
+            return f'{self.name[:50]}...'
+        else:
+            return self.name
 
 class Review(models.Model):
     product = models.ForeignKey(
