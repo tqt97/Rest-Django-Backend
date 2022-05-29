@@ -49,20 +49,20 @@ class Product(models.Model):
 
     def get_image(self):
         if self.image:
-            return f'http://127.0.0.1:8000{self.image.url}'
+            return f'https://tqt-rest-djshop.herokuapp.com{self.image.url}'
         else:
-            return 'http://127.0.0.1:8000/media/no-image.jpg'
+            return 'https://tqt-rest-djshop.herokuapp.com/media/no-image.jpg'
 
     def get_thumbnail(self):
         if self.thumbnail:
-            return f'http://127.0.0.1:8000{self.thumbnail.url}'
+            return f'https://tqt-rest-djshop.herokuapp.com{self.thumbnail.url}'
         if self.image:
             size = (300, 300)
             self.thumbnail = make_thumbnail(self.image, size)
             self.save()
-            return f'http://127.0.0.1:8000{self.thumbnail.url}'
+            return f'https://tqt-rest-djshop.herokuapp.com{self.thumbnail.url}'
         else:
-            return 'http://127.0.0.1:8000/media/no-image-thumb.jpg'
+            return 'https://tqt-rest-djshop.herokuapp.com/media/no-image-thumb.jpg'
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
