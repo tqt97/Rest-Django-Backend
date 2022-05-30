@@ -5,16 +5,17 @@ from django.core.files import File
 from django.utils.text import slugify
 from autoslug import AutoSlugField
 from product.utils import make_thumbnail
+from tinymce.models import HTMLField
 
 
 class Post(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
-    body = models.TextField()
+    body = HTMLField()
     slug = AutoSlugField(populate_from='title', unique_with='title')
 
     image = models.ImageField(upload_to='uploads/blogs/', blank=True)
-    thumbnail = models.ImageField(upload_to='', blank=True)
+    thumbnail = models.ImageField(upload_to='uploads/blogs/thumbnails/', blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -30,17 +31,17 @@ class Post(models.Model):
 
     def get_image(self):
         if self.image:
-            return f'https://tqt-rest-djshop.herokuapp.com{self.image.url}'
+            return f'{self.image.url}'
         return ''
 
     def get_thumbnail(self):
         if self.thumbnail:
-            return f'https://tqt-rest-djshop.herokuapp.com{self.thumbnail.url}'
+            return f'{self.thumbnail.url}'
         if self.image:
             size = (400, 300)
             self.thumbnail = make_thumbnail(self.image, size)
             self.save()
-            return f'https://tqt-rest-djshop.herokuapp.com{self.thumbnail.url}'
+            return f'{self.thumbnail.url}'
         else:
             return ''
 

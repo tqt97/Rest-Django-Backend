@@ -22,13 +22,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = 'django-insecure-n#@y*%v5g1p53=fi-2_g)yw#ti+%5j5(m#=_ua$9-rk*m78#5j'
+# SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
+DEBUG = True
+# DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 
 ALLOWED_HOSTS = ['https://tqt-rest-djshop.herokuapp.com']
 
-STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+STRIPE_SECRET_KEY = 'sk_test_51L3IEXGA7goTPkXeUfAWFoIjQ278h8eDRv3GFc2NNfTk86X2VQqE8COzMdvDXptAL1B17SzUZdGZQneRach4ELC300x7kIyrjh'
+# STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 # Application definition
 
 INSTALLED_APPS = [
@@ -155,9 +158,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 
-AWS_S3_ACCESS_KEY_ID = os.environ.get('AWS_S3_ACCESS_KEY_ID')
-AWS_S3_SECRET_ACCESS_KEY = os.environ.get('AWS_S3_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_ACCESS_KEY_ID = 'AKIARC4PKSV4EOJJRYGI'
+AWS_S3_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'restdjango'
 AWS_QUERYSTRING_AUTH = False
 
 django_heroku.settings(locals())

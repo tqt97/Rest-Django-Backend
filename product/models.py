@@ -4,6 +4,7 @@ from autoslug import AutoSlugField
 from django.contrib.auth.models import User
 from django.contrib.humanize.templatetags import humanize
 from .utils import make_thumbnail
+from tinymce.models import HTMLField
 
 
 class Category(models.Model):
@@ -30,11 +31,11 @@ class Product(models.Model):
         Category, related_name='products', on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     slug = AutoSlugField(populate_from='name', unique_with='name')
-    description = models.TextField(blank=True, null=True)
+    description = HTMLField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(
         upload_to='uploads/products/', blank=True, null=True)
-    thumbnail = models.ImageField(blank=True, null=True)
+    thumbnail = models.ImageField(upload_to='uploads/products/thumbnails/',blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -49,18 +50,18 @@ class Product(models.Model):
 
     def get_image(self):
         if self.image:
-            return f'https://tqt-rest-djshop.herokuapp.com{self.image.url}'
+            return f'{self.image.url}'
         else:
             return ''
 
     def get_thumbnail(self):
         if self.thumbnail:
-            return f'https://tqt-rest-djshop.herokuapp.com{self.thumbnail.url}'
+            return f'{self.thumbnail.url}'
         if self.image:
             size = (300, 300)
             self.thumbnail = make_thumbnail(self.image, size)
             self.save()
-            return f'https://tqt-rest-djshop.herokuapp.com{self.thumbnail.url}'
+            return f'{self.thumbnail.url}'
         else:
             return ''
 
